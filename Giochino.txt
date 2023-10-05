@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <string.h>
+
+// Define a structure to store questions and answers
+struct Question {
+    char question[100];
+    char answer[20];
+};
+
+int main() {
+    char username[50];
+    int score = 0;
+    
+    printf("Welcome to the Q&A Game!\n");
+    printf("Enter your username: ");
+    scanf("%s", username);
+    
+    struct Question questions[] = {
+        {"What is the capital of France?", "Paris"},
+        {"What is the largest planet in our solar system?", "Jupiter"},
+        {"How many continents are there on Earth?", "7"},
+        // Add more questions and answers here
+    };
+    
+    int numQuestions = sizeof(questions) / sizeof(questions[0]);
+    
+    for (int i = 0; i < numQuestions; i++) {
+        printf("\nQuestion %d: %s\n", i + 1, questions[i].question);
+        char userAnswer[20];
+        printf("Your answer: ");
+        scanf("%s", userAnswer);
+        
+        if (strcmp(userAnswer, questions[i].answer) == 0) {
+            printf("Correct!\n");
+            score++;
+        } else {
+            printf("Wrong! The correct answer is: %s\n", questions[i].answer);
+        }
+    }
+    
+    printf("\nGame over, %s!\n", username);
+    printf("Your final score is: %d out of %d\n", score, numQuestions);
+    
+    return 0;
+}
